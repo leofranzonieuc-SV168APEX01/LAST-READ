@@ -1,5 +1,8 @@
 "use client";
 import Link from "next/link";
+import { useState } from "react";
+import SignInModal from "../components/SignInModal"; // ajuste le chemin: "../../components/SignInModal" si tu es dans app/...
+
 
 export default function Header() {
   return (
