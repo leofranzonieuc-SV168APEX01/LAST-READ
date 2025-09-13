@@ -1,6 +1,6 @@
 import "./globals.css";
-import Header from "@/components/site/Header"; // adapte si besoin
-import AuthProvider from "../components/auth";
+import AuthProvider from "../components/auth";   // déjà créé au point 2
+import Header from "../components/Header";       // <— NOUVEAU
 
 export default function RootLayout({ children }) {
   return (
