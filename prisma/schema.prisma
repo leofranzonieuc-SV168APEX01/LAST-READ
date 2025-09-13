@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id            Int            @id @default(autoincrement())
+  title         String
+  date          DateTime
+  image         String?
+  discipline    String
+  distance      String?
+  location      String
+  notes         String?
+  registrations Registration[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  name        String?
+  passwordHash String
+  role        Role          @default(USER)
+  isAdherent  Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  registrations Registration[]
+}
+
+model Registration {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  eventId   Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  event     Event    @relation(fields: [eventId], references: [id])
+}
