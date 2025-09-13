@@ -1,49 +1,57 @@
 "use client";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 
-export default function SignInModal({ open, onClose }) {
+// ——— Choisis le bon chemin selon l’endroit où se trouve CE fichier : ———
+// Si ton header est dans `components/` :
+import SignInModal from "./SignInModal";
+// Si ton header est DANS `app/.../` et que SignInModal est dans `components/` :
+// import SignInModal from "../../components/SignInModal";
+// Si ton header est dans un sous-dossier de `components/` (ex: components/site/):
+// import SignInModal from "../SignInModal";
+
+// ——— Header principal avec bouton "Se connecter" qui ouvre une pop-up ———
+export default function HeaderPrincipal() {
+  const [signinOpen, setSigninOpen] = useState(false);
+
+  // (optionnel) fermer la modale si on navigue
   useEffect(() => {
-    const onEsc = (e) => e.key === "Escape" && onClose?.();
-    if (open) document.addEventListener("keydown", onEsc);
-    return () => document.removeEventListener("keydown", onEsc);
-  }, [open, onClose]);
+    const onRoute = () => setSigninOpen(false);
+    // on pourrait écouter le router si tu utilises next/navigation
+    return () => {};
+  }, []);
 
-  if (!open) return null;
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center"
-      aria-modal="true"
-      role="dialog"
-    >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
-      {/* Panel */}
-      <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
-        <div className="flex items-start justify-between mb-4">
-          <h2 className="text-xl font-semibold">Connexion</h2>
-          <button
-            onClick={onClose}
-            className="rounded px-2 py-1 hover:bg-black/5"
-            aria-label="Fermer"
-          >
-            ✕
-          </button>
-        </div>
+    <>
+      <header className="sticky top-0 z-40 border-b bg-white/90 backdrop-blur">
+        <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {/* Logo : assure-toi d’avoir /public/logo.png */}
+            <img src="/logo.png" alt="Occitan’Ewheel" className="h-7 w-auto" />
+            <span className="font-semibold">Occitan’Ewheel</span>
+          </div>
 
-        {/* Contenu minimal : tu peux brancher NextAuth plus tard */}
-        <div className="space-y-3">
-          <a
-            href="/auth/signin"
-            className="inline-block rounded-lg px-4 py-2 border text-sm hover:bg-black/5"
-          >
-            Continuer vers la page de connexion
-          </a>
-          <p className="text-sm text-gray-600">
-            Lorsque NextAuth sera configuré, tu pourras remplacer ce contenu par
-            de vrais boutons (Google, email, etc.).
-          </p>
+          <nav className="flex items-center gap-4 text-sm">
+            <Link href="/">Accueil</Link>
+            <Link href="/qui-sommes-nous">Qui sommes-nous</Link>
+            <Link href="/disciplines">Disciplines</Link>
+            <Link href="/media">Média</Link>
+            <Link href="/calendrier">Calendrier & Licences</Link>
+            <Link href="/contact">Contact</Link>
+
+            {/* BOUTON POP-UP */}
+            <button
+              onClick={() => setSigninOpen(true)}
+              className="rounded-lg px-3 py-1.5 border hover:bg-black/5"
+            >
+              Se connecter
+            </button>
+          </nav>
         </div>
-      </div>
-    </div>
+      </header>
+
+      {/* Pop-up de connexion (fallback) */}
+      <SignInModal open={signinOpen} onClose={() => setSigninOpen(false)} />
+    </>
   );
 }
