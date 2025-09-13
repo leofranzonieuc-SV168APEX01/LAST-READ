@@ -28,13 +28,14 @@ enum Role {
 }
 
 model User {
-  id          Int           @id @default(autoincrement())
-  email       String        @unique
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
   name        String?
   passwordHash String
-  role        Role          @default(USER)
-  isAdherent  Boolean       @default(false)
-  createdAt   DateTime      @default(now())
+  role        Role     @default(USER)
+  isAdherent  Boolean  @default(false)
+  membershipValidUntil DateTime?   // Date d’expiration de l’adhésion (ex : 2025-12-31)
+  createdAt   DateTime @default(now())
   registrations Registration[]
 }
 

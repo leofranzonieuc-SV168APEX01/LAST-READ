@@ -1,47 +1,45 @@
-"use client";
-import { useState } from "react";
-import { signIn } from "next-auth/react";
+'use client';
+
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
 
 export default function LoginButton({ onLoginSuccess }) {
-  const [email, setEmail] = useState("user@occitanewheel.fr");
-  const [password, setPassword] = useState("user123");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('user@occitanewheel.fr');
+  const [password, setPassword] = useState('user123');
+  const [error, setError] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setError("");
-    // Appel NextAuth pour se connecter avec les credentials
-    const res = await signIn("credentials", {
+    setError('');
+    const res = await signIn('credentials', {
       email,
       password,
-      redirect: false
+      redirect: false,
     });
     if (res?.error) {
-      // Erreur d'authentification
-      setError("Identifiants incorrects");
-    } else {
-      // Succès : fermer la pop-up de connexion
-      if (onLoginSuccess) onLoginSuccess();
+      setError('Identifiants incorrects');
+      return;
     }
+    onLoginSuccess?.();
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center gap-2">
-      <input 
+    <form onSubmit={handleSubmit} className="grid gap-2">
+      <input
         type="email"
         className="border rounded px-2 py-1 text-sm"
-        placeholder="Email" 
-        value={email} 
-        onChange={(e) => setEmail(e.target.value)} 
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
-      <input 
+      <input
         type="password"
         className="border rounded px-2 py-1 text-sm"
-        placeholder="Mot de passe" 
-        value={password} 
-        onChange={(e) => setPassword(e.target.value)} 
+        placeholder="Mot de passe"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <button 
+      <button
         type="submit"
         className="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700"
       >

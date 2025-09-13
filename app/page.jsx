@@ -1,145 +1,132 @@
+// app/page.jsx
 
-"use client";
-import GalleryTabs from "../src/components/GalleryTabs";
-import SocialQR from "../src/components/SocialQR";
-
-
-
-const NAV = [
-  { id: "accueil", label: "Accueil" },
-  { id: "qui", label: "Qui sommes-nous" },
-  { id: "disciplines", label: "Disciplines" },
-  { id: "media", label: "Média" },
-  { id: "calendrier", label: "Calendrier & Licences" },
-  { id: "contact", label: "Contact" },
-];
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <main>
-      <header className="sticky top-0 z-40 border-b bg-white/90 backdrop-blur">
-        <div className="container flex items-center justify-between h-14">
-          <div className="flex items-center gap-3">
-            <img src="/logo.png" alt="Occitan'Ewheel" className="h-8 w-8" />
-            <span className="font-bold">Occitan'Ewheel</span>
+    <>
+      {/* ACCUEIL / HERO */}
+      <section id="accueil" className="container mx-auto px-4 py-10">
+        <div className="flex items-center justify-between gap-6">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold mb-3">Occitan’Ewheel</h1>
+            <p className="text-gray-700 max-w-2xl">
+              Association pour la pratique de la gyroroue en Occitanie : sorties, entraînements,
+              sécurité et convivialité.
+            </p>
+            <div className="mt-4 flex gap-2">
+              <a href="#disciplines" className="px-3 py-1.5 rounded bg-red-600 text-white">Découvrir</a>
+              <a href="#contact" className="px-3 py-1.5 rounded border">Nous contacter</a>
+            </div>
           </div>
-          <nav className="hidden md:flex gap-1">
-            {NAV.map((n) => (
-              <a key={n.id} href={`#${n.id}`} className="nav-link">{n.label}</a>
-            ))}
-          </nav>
-        </div>
-      </header>
-
-      <section id="accueil" className="section bg-gradient-to-r from-occ-red to-occ-yellow text-white">
-        <div className="container">
-          <h1 className="text-4xl md:text-5xl font-extrabold">Association de gyroroue en Occitanie</h1>
-          <p className="mt-3 max-w-2xl">Initiation, découverte et entraînement aux compétitions de gyroroue. Sécurité, partage et passion comme priorités.</p>
-          <div className="mt-6 flex gap-3">
-            <a href="#qui" className="btn-primary bg-white text-black hover:bg-gray-100">Découvrir</a>
-            <a href="#contact" className="btn-primary">Nous contacter</a>
-          </div>
+          {/* Si tu as un visuel/illustration, ajoute-le ici */}
         </div>
       </section>
 
-      <section id="qui" className="section">
-        <div className="container">
-          <h2 className="h2">Qui sommes-nous</h2>
-          <p className="mb-4">L'association a pour but de promouvoir la pratique de la gyroroue dans toutes ses disciplines sportives, sur piste bitumée ou sol terreux. Elle vise à démocratiser ces activités en favorisant l'accès à des lieux adaptés et en supprimant les appréhensions liées à sa pratique. Elle s'engage à développer une communauté inclusive et bienveillante, en proposant des conseils, des formations et des événements. Elle sensibilise au respect des règles de sécurité et de l'environnement...</p>
-          <div className="mt-6 grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="text-xl font-bold mb-2">Réseaux sociaux</h3>
-              <SocialQR />
+      {/* QUI SOMMES-NOUS */}
+      <section id="quisonnous" className="container mx-auto px-4 py-10">
+        <h2 className="text-2xl font-bold mb-4">Qui sommes-nous</h2>
+        <p className="text-sm text-gray-700 max-w-3xl">
+          L’association a pour but de promouvoir la pratique de la gyroroue dans toutes ses disciplines
+          sportives, en prônant la sécurité, l’entraide et la bonne humeur. Elle vise à démocratiser
+          cette activité, organiser des événements, proposer des entraînements, et représenter les pratiquants.
+        </p>
 
-              <ul className="list-disc list-inside">
-                <li>@Asso+Dan+Hood+LF</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">Lien vers les disciplines</h3>
-              <a href="#disciplines" className="text-occ-red underline">Voir les disciplines</a>
-            </div>
-          </div>
+        {/* Réseaux sociaux (garde/complète tes cartes) */}
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+          <a className="block border rounded p-3" href="#" target="_blank">QR WhatsApp Dan</a>
+          <a className="block border rounded p-3" href="#" target="_blank">QR Instagram @asso</a>
+          <a className="block border rounded p-3" href="#" target="_blank">QR Instagram @leofranzoni</a>
+          <a className="block border rounded p-3" href="#" target="_blank">Lien vers les disciplines</a>
         </div>
       </section>
 
-      <section id="disciplines" className="section">
-        <div className="container">
-          <h2 className="h2">Disciplines</h2>
-          <GalleryTabs />
-        </div>
-      </section>
+      {/* DISCIPLINES */}
+      <section id="disciplines" className="container mx-auto px-4 py-10">
+        <h2 className="text-2xl font-bold mb-4">Disciplines</h2>
 
-      <section id="media" className="section bg-gray-50">
-        <div className="container">
-          <h2 className="h2">Média</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-semibold mb-2">YouTube Francophones & autres langues</h3>
-              <p>Liste à compléter : JRCV TEAM, RoninEUC, Monsieur Flex, WrongWay, EUC Limburg, ...</p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-2">Articles, presse & sites majeurs</h3>
-              <p>À regrouper ici.</p>
-            </div>
+        <h3 className="text-lg font-semibold mb-2">Découvrir les disciplines sportives</h3>
+        <div className="mb-4 flex flex-wrap gap-2 text-sm">
+          <span className="px-2 py-1 border rounded">Utilitaire</span>
+          <span className="px-2 py-1 border rounded">Crosstrack</span>
+          <span className="px-2 py-1 border rounded">Enduro Trail</span>
+          <span className="px-2 py-1 border rounded">Piste/Circuit</span>
+          <span className="px-2 py-1 border rounded">Dirt Jump/Slopestyle</span>
+          <span className="px-2 py-1 border rounded">Parade & Voyages</span>
+        </div>
+
+        {/* Exemple de carte (remets tes vraies vignettes ici) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="border rounded p-3">
+            <div className="text-sm text-gray-700">Sherman VS Fiat500 Lafabrica</div>
           </div>
         </div>
       </section>
 
-      <section id="calendrier" className="section">
-        <div className="container">
-          <h2 className="h2">Calendrier & Licences</h2>
-          <div className="space-y-3">
-            <p>1 — La circulation sur voie publique requiert une assurance de responsabilité civile spécifique EDPM (non incluse dans l'habitation, contrairement au vélo). Sur un événement sportif chronométré / circuit, une assurance sportive événementielle peut être demandée.</p>
-            <p>2 — Calendrier des événements par discipline avec réservations (formulaires). Entre lundi et mercredi on poste un événement ou pas.</p>
+      {/* MÉDIA */}
+      <section id="media" className="container mx-auto px-4 py-10">
+        <h2 className="text-2xl font-bold mb-4">Média</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <p className="font-medium mb-1">YouTube, inscriptions & autres liens</p>
+            <p>Liste à compléter : JKCW TEAM, MontlEur, WorgWey, LEC Limbrug…</p>
+          </div>
+          <div>
+            <p className="font-medium mb-1">Articles, presse & tests matos</p>
+            <p>À regrouper ici.</p>
           </div>
         </div>
       </section>
 
-      <section id="contact" className="section bg-gray-50">
-        <div className="container">
-          <h2 className="h2">Contact</h2>
-          <form className="grid md:grid-cols-2 gap-4 max-w-3xl" onSubmit={(e)=>e.preventDefault()}>
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium">Qualité</label>
-              <input className="mt-1 w-full border rounded-md px-3 py-2" placeholder="M., Mme, Autre" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Nom</label>
-              <input className="mt-1 w-full border rounded-md px-3 py-2" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Prénom</label>
-              <input className="mt-1 w-full border rounded-md px-3 py-2" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">@ de contact</label>
-              <input type="email" className="mt-1 w-full border rounded-md px-3 py-2" placeholder="email@exemple.com" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Lieu de domicile</label>
-              <input className="mt-1 w-full border rounded-md px-3 py-2" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">Profession</label>
-              <input className="mt-1 w-full border rounded-md px-3 py-2" />
-            </div>
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium">Message</label>
-              <textarea rows={5} className="mt-1 w-full border rounded-md px-3 py-2" />
-            </div>
-            <div className="md:col-span-2">
-              <button className="btn-primary" type="submit">Envoyer</button>
-            </div>
-          </form>
-        </div>
+      {/* CALENDRIER & LICENCES */}
+      <section id="calendrier" className="container mx-auto px-4 py-10">
+        <h2 className="text-2xl font-bold mb-4">Calendrier & Licences</h2>
+        <p className="text-sm text-gray-700 mb-4">
+          1 — Les activités en voie publique requièrent… (ton texte existant).<br/>
+          2 — Calendrier des évènements par discipline… (ton texte existant).
+        </p>
+
+        {/* Si tu as un composant EventsCalendar, insère-le ici */}
+        {/* <EventsCalendar /> */}
       </section>
 
-      <footer className="border-t">
-        <div className="container py-6 text-sm text-gray-600">
-          © {new Date().getFullYear()} Occitan'Ewheel — Tous droits réservés.
-        </div>
-      </footer>
-    </main>
+      {/* CONTACT */}
+      <section id="contact" className="container mx-auto px-4 py-10">
+        <h2 className="text-2xl font-bold mb-4">Contact</h2>
+        <form className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm max-w-3xl">
+          <label className="grid gap-1">
+            <span>Qualité</span>
+            <input className="border rounded p-2" placeholder="M., Mme, Autre" />
+          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label className="grid gap-1">
+              <span>Nom</span>
+              <input className="border rounded p-2" />
+            </label>
+            <label className="grid gap-1">
+              <span>Prénom</span>
+              <input className="border rounded p-2" />
+            </label>
+          </div>
+          <label className="grid gap-1">
+            <span>E-mail de contact</span>
+            <input type="email" className="border rounded p-2" placeholder="email@example.com" />
+          </label>
+          <label className="grid gap-1">
+            <span>Lieu de domicile</span>
+            <input className="border rounded p-2" placeholder="Ville / Département" />
+          </label>
+          <label className="grid gap-1 md:col-span-2">
+            <span>Profession</span>
+            <input className="border rounded p-2" />
+          </label>
+          <label className="grid gap-1 md:col-span-2">
+            <span>Message</span>
+            <textarea rows={4} className="border rounded p-2" />
+          </label>
+          <div className="md:col-span-2 text-right">
+            <button type="submit" className="px-3 py-1.5 rounded bg-red-600 text-white">Envoyer</button>
+          </div>
+        </form>
+      </section>
+    </>
   );
 }
