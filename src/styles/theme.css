@@ -1,0 +1,24 @@
+:root {
+  --red: #C90C0F;
+  --yellow: #FFCC00;
+  --white: #FFFFFF;
+  --text: #222;
+}
+
+body {
+  background: var(--white);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+h1, h2, h3 {
+  color: var(--red);
+}
+
+a {
+  color: var(--red);
+}
+
+button {
+  font-weight: bold;
+}
